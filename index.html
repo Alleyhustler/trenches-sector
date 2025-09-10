@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FUN COL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      color: white;
+      margin: 0;
+      text-align: center;
+      background-color: black;
+      cursor: crosshair;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    p {
+      color: rgba(255,255,255, 0.5)
+    }
+    .header {
+      top: 42%;
+    }
+    .header-content {
+      padding: 50px;
+      background-color: rgba(0,0,0,0.3);
+      border-radius: 10px;
+    }
+    .footer {
+      bottom:3%;
+    }
+    .description {
+      color: gray;
+      padding-top: 50px;
+    }
+    a, a:hover, a:visited {
+      color: white;
+      text-decoration: none;
+    } 
+    .disable-selection {
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer */
+       -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+      -webkit-user-select: none; /* Chrome, Safari, and Opera */
+      -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+    }
+    h1::after {
+      content: '~CA HERE ONCE LIVE~';
+      font-size: 12px;
+      position:absolute;
+      top: 3px;
+      padding-left: 5px;
+      font-weight: 400;
+    }
+    h2::after {
+      content: '';
+      font-size: 8px;
+      position:absolute;
+      top: 14px;
+      padding-left: 5px;
+    }
+    .btn {
+      border-radius: 100px;
+      padding: 10px 25px;
+    }
+    
+    /* New styles for modified layout */
+    .top-title {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      text-align: left;
+    }
+    
+    .top-title h1 {
+      font-size: 24px;
+      margin: 0;
+      position: relative;
+    }
+    
+    .center-content {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      text-align: center;
+    }
+    
+    .logo-container {
+      margin-bottom: 30px;
+    }
+    
+    .logo-container img {
+      max-width: 300px;
+      height: auto;
+    }
+    
+    .bio-description {
+      color: rgba(255,255,255, 0.8);
+      font-size: 18px;
+      margin-bottom: 30px;
+      max-width: 400px;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      align-items: center;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 25px;
+      transition: background-color 0.3s;
+    }
+    
+    .social-links a:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+    
+    .wallet-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    
+    .wallet-btn {
+      background: linear-gradient(45deg, #512da8, #673ab7);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    
+    .wallet-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(103, 58, 183, 0.4);
+    }
+    
+    .wallet-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    .wallet-address {
+      background-color: rgba(0,0,0,0.8);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top Left Title -->
+<div class="top-title disable-selection">
+  <h1><strong>Pumpfun Colony - Funopolis</strong></h1>
+</div>
+
+<!-- Top Right Wallet Connection -->
+<div class="wallet-container">
+  <button id="connectWallet" class="wallet-btn">Connect Phantom</button>
+  <div id="walletAddress" class="wallet-address" style="display: none;"></div>
+</div>
+
+<!-- Center Content -->
+<div class="center-content disable-selection">
+  <!-- Logo Container -->
+  <div class="logo-container">
+    <img src="logo.png" alt="FUN COL Logo" id="mainLogo">
+  </div>
+  
+  <!-- Bio Description -->
+  <div class="bio-description">
+    <p>AI-driven settlement, perhaps even extraterrestrial. Welcome to the future of decentralized communities where artificial intelligence meets cosmic exploration.</p>
+  </div>
+  
+  <!-- Social Links -->
+  <div class="social-links">
+    <a href="https://x.com/Pumpfun_colony" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" height="24px" style="filter: invert()">
+        <path d="M 6 3 C 4.3550302 3 3 4.3550302 3 6 L 3 18 C 3 19.64497 4.3550302 21 6 21 L 18 21 C 19.64497 21 21 19.64497 21 18 L 21 6 C 21 4.3550302 19.64497 3 18 3 L 6 3 z M 6 5 L 18 5 C 18.56503 5 19 5.4349698 19 6 L 19 18 C 19 18.56503 18.56503 19 18 19 L 6 19 C 5.4349698 19 5 18.56503 5 18 L 5 6 C 5 5.4349698 5.4349698 5 6 5 z M 6.7011719 7 L 10.642578 12.632812 L 6.90625 17 L 8.2382812 17 L 11.240234 13.484375 L 13.697266 17 L 17.537109 17 L 13.351562 11.009766 L 16.773438 7 L 15.462891 7 L 12.759766 10.160156 L 10.552734 7 L 6.7011719 7 z M 8.5664062 7.9882812 L 10.052734 7.9882812 L 15.683594 16.011719 L 14.1875 16.011719 L 8.5664062 7.9882812 z"></path>
+      </svg>
+      TWITTER
+    </a>
+    <a href="#" id="caLink">
+      <span>CA</span>
+    </a>
+  </div>
+</div>
+
+<script src="js/three.min.js"></script>
+<script src="https://github.com/mrdoob/three.js/blob/master/src/constants.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/TweenMax.min.js"></script>
+<script src="js/script.js"></script>
+
+<script>
+// Phantom Wallet Connection
+let walletConnected = false;
+let walletAddress = null;
+
+document.getElementById('connectWallet').addEventListener('click', async () => {
+  const connectBtn = document.getElementById('connectWallet');
+  const addressDiv = document.getElementById('walletAddress');
+  
+  if (walletConnected) {
+    // Disconnect wallet
+    walletConnected = false;
+    walletAddress = null;
+    connectBtn.textContent = 'Connect Phantom';
+    addressDiv.style.display = 'none';
+    return;
+  }
+  
+  try {
+    // Check if Phantom is installed
+    if (typeof window.solana === 'undefined' || !window.solana.isPhantom) {
+      alert('Phantom wallet not found! Please install Phantom wallet extension.');
+      window.open('https://phantom.app/', '_blank');
+      return;
+    }
+    
+    connectBtn.textContent = 'Connecting...';
+    connectBtn.disabled = true;
+    
+    // Connect to Phantom
+    const resp = await window.solana.connect();
+    walletAddress = resp.publicKey.toString();
+    walletConnected = true;
+    
+    // Update UI
+    connectBtn.textContent = 'Disconnect';
+    connectBtn.disabled = false;
+    addressDiv.textContent = `${walletAddress.slice(0, 4)}...${walletAddress.slice(-4)}`;
+    addressDiv.style.display = 'block';
+    
+    console.log('Connected to wallet:', walletAddress);
+    
+  } catch (error) {
+    console.error('Error connecting to wallet:', error);
+    connectBtn.textContent = 'Connect Phantom';
+    connectBtn.disabled = false;
+    
+    if (error.code === 4001) {
+      alert('Connection rejected by user');
+    } else {
+      alert('Failed to connect to Phantom wallet');
+    }
+  }
+});
+
+// Listen for wallet disconnect
+if (typeof window.solana !== 'undefined') {
+  window.solana.on('disconnect', () => {
+    walletConnected = false;
+    walletAddress = null;
+    document.getElementById('connectWallet').textContent = 'Connect Phantom';
+    document.getElementById('walletAddress').style.display = 'none';
+    console.log('Wallet disconnected');
+  });
+}
+
+// CA Link functionality
+document.getElementById('caLink').addEventListener('click', (e) => {
+  e.preventDefault();
+  // Add your contract address here
+  const contractAddress = 'YOUR_CONTRACT_ADDRESS_HERE';
+  if (contractAddress !== 'YOUR_CONTRACT_ADDRESS_HERE') {
+    navigator.clipboard.writeText(contractAddress).then(() => {
+      alert('Contract address copied to clipboard!');
+    }).catch(() => {
+      prompt('Contract Address:', contractAddress);
+    });
+  } else {
+    alert('Contract address not set yet');
+  }
+});
+</script>
+
+</body>
+</html>
